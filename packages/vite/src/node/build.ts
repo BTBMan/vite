@@ -403,6 +403,8 @@ async function doBuild(
     await initDepsOptimizer(config)
   }
 
+  // console.log('external--------', external)
+
   const rollupOptions: RollupOptions = {
     context: 'globalThis',
     preserveEntrySignatures: ssr
