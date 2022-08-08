@@ -309,7 +309,6 @@ export function buildImportAnalysisPlugin(config: ResolvedConfig): Plugin {
         // do not by injecting a ?used query - this allows us to avoid including
         // the CSS string when unnecessary (esbuild has trouble tree-shaking
         // them)
-
         if (
           specifier &&
           !isRollupExternal(specifier, importer, config) &&
@@ -323,7 +322,6 @@ export function buildImportAnalysisPlugin(config: ResolvedConfig): Plugin {
           !(bareImportRE.test(specifier) && !specifier.includes('/'))
         ) {
           const url = specifier.replace(/\?|$/, (m) => `?used${m ? '&' : ''}`)
-
           str().overwrite(start, end, isDynamicImport ? `'${url}'` : url, {
             contentOnly: true
           })

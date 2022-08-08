@@ -267,11 +267,11 @@ export const isRollupExternal = (
     return !!rollupExternal(source, importer, false)
   }
 
-  const externals = [
-    ...(Array.isArray(rollupExternal) ? rollupExternal : [rollupExternal])
-  ]
-
-  return createFilter(externals, [], { resolve: false })(source)
+  return createFilter(
+    [...(Array.isArray(rollupExternal) ? rollupExternal : [rollupExternal])],
+    [],
+    { resolve: false }
+  )(source)
 }
 
 export const dataUrlRE = /^\s*data:/i
