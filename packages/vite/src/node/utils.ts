@@ -260,8 +260,11 @@ export const isRollupExternal = (
   importer: string,
   config: ResolvedConfig
 ): boolean => {
-  const { rollupOptions } = config.build || {}
-  const rollupExternal = rollupOptions.external || ''
+  const rollupExternal = config.build?.rollupOptions?.external
+
+  if (!rollupExternal) {
+    return false
+  }
 
   if (rollupExternal instanceof Function) {
     return !!rollupExternal(source, importer, false)
