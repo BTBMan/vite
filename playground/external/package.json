@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@vitejs/dep-that-imports-vue": "file:./dep-that-imports-vue",
-    "@vitejs/dep-that-dynamic-imports-vue": "file:./dep-that-dynamic-imports-vue",
+    "@vitejs/dep-that-dynamic-imports-css": "file:./dep-that-dynamic-imports-css",
     "@vitejs/dep-that-requires-vue": "file:./dep-that-requires-vue"
   },
   "devDependencies": {

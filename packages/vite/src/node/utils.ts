@@ -255,6 +255,25 @@ export const cleanUrl = (url: string): string =>
 export const externalRE = /^(https?:)?\/\//
 export const isExternalUrl = (url: string): boolean => externalRE.test(url)
 
+export const isRollupExternal = (
+  source: string,
+  importer: string,
+  config: ResolvedConfig
+): boolean => {
+  const { rollupOptions } = config.build || {}
+  const rollupExternal = rollupOptions.external || ''
+
+  if (rollupExternal instanceof Function) {
+    return !!rollupExternal(source, importer, false)
+  }
+
+  const externals = [
+    ...(Array.isArray(rollupExternal) ? rollupExternal : [rollupExternal])
+  ]
+
+  return createFilter(externals, [], { resolve: false })(source)
+}
+
 export const dataUrlRE = /^\s*data:/i
 export const isDataUrl = (url: string): boolean => dataUrlRE.test(url)
 
